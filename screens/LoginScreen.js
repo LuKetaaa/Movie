@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import logoImage from '../assets/logo.png';
 
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation();
 
   const handleLogin = () => {
-    // Adicione a lógica de autenticação aqui
-    // Por enquanto, vamos apenas navegar para a tela de filmes
-    navigation.navigate('Movies');
+    navigation.navigate('MovieScreen');
   };
 
   return (
     <View style={styles.container}>
-      <Image source={require('../assets/logo.png')} style={styles.logo} />
+      <Image source={logoImage} style={styles.logo} />
       <Text style={styles.title}>CineView</Text>
       <TextInput
         style={styles.input}
         placeholder="Usuário"
+        placeholderTextColor="#999"
         value={username}
         onChangeText={setUsername}
       />
       <TextInput
         style={styles.input}
         placeholder="Senha"
+        placeholderTextColor="#999"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
@@ -35,29 +38,30 @@ export default function LoginScreen({ navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#666363',
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#000', 
     padding: 16,
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 150,
+    height: 150,
     marginBottom: 20,
   },
   title: {
     fontSize: 24,
+    fontWeight: 'bold',
+    color: '#fff', 
     marginBottom: 20,
-    color: '#ffffff',
   },
   input: {
-    width: '70%',
+    width: '80%',
     padding: 10,
     borderWidth: 1,
-    borderColor: '#ffffff',
-    marginBottom: 10,
+    borderColor: '#ccc',
     borderRadius: 5,
-    backgroundColor: '#ffffff',
+    marginBottom: 10,
+    backgroundColor: '#fff', 
   },
 });
